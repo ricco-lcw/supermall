@@ -1,8 +1,6 @@
 <template>
     <section>
-        <p class="content">
-            this is homepage
-        </p>
+        this is mtable page
     </section>
 </template>
 <script>
@@ -14,8 +12,6 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-    .content {
-        color:burlywood
-    }
+<style scoped>
+
 </style>
