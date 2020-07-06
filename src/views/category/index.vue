@@ -1,7 +1,7 @@
 <template>
     <section>
         <p class="content">
-            this is homepage
+            this is category
         </p>
     </section>
 </template>
@@ -16,6 +16,6 @@ export default {
 </script>
 <style lang="scss" scoped>
     .content {
-        color:blue
+        color:burlywood
     }
 </style>

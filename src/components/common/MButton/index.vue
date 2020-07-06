@@ -12,11 +12,11 @@ export default {
     props:{
         activeColor: {
             type: String,
-            default: 'red'
+            default: '#ff5777'
         },
         path: {
             type: String,
-            default: '/Home'
+            default: '/homePage'
         },
         params: {
             type: Object,
@@ -33,7 +33,7 @@ export default {
             return this.$route.path.indexOf(this.path) !== -1
         },
         activeStyle() {
-            return this.isActive ? {color: tihs.activeColor} : {}
+            return this.isActive ? {color: this.activeColor} : {}
         }
     },
     methods: {
@@ -43,7 +43,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .item {
     flex: 1;
     text-align: center;

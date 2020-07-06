@@ -1,9 +1,7 @@
 <template>
     <section>
+        <router-view></router-view>
         <m-button></m-button>
-        <div class="content">
-            this is layout page
-        </div>
     </section>
 </template>
 <script>
@@ -20,10 +18,17 @@ export default {
 }
 </script>
 <style lang="scss" sopced>
-    .content {
-        display: fixed;
-        width: 10vw;
-        height: 10vh;
-        color: red
-    }
+
+// $background-color: #e6e6e6;
+
+// $link-color: blue;
+
+// .content {
+//     display: fixed;
+//     width: 20vw;
+//     height: 30vh;
+//     background-color: $background-color;
+//     color: $link_color;
+//     color:cadetblue;
+// }
 </style>

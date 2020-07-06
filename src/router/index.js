@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import Layout from '../Layout'
 
-
 Vue.use(Router)
 
 const CommonMap = [
@@ -13,9 +12,35 @@ const CommonMap = [
     },{
         path: '/Layout',
         name: 'Layout',
-        meta: { title: 'Home页面'},
-        component: Layout
-      }
+        meta: { title: 'Layout'},
+        component: Layout,
+        children: [
+            {
+                path: '/',
+                redirect: '/homePage',
+            },{
+                path: '/homePage',
+                name: 'homePage',
+                meta: { title:'homePage' },
+                component: () => import('views/homePage')
+            },{
+                path: '/category',
+                name: 'category',
+                meta: { title:'category' },
+                component: () => import('views/category')
+            },{
+                path: '/cart',
+                name: 'cart',
+                meta: { title:'cart' },
+                component: () => import('views/cart')
+            },{
+                path: '/profile',
+                name: 'profile',
+                meta: { title:'profile' },
+                component: () => import('views/profile')
+            }
+        ]
+    }
 ]
 
 const router = new Router({
