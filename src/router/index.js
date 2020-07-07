@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Layout from '../Layout'
-
 Vue.use(Router)
 
 const CommonMap = [
@@ -13,7 +11,7 @@ const CommonMap = [
         path: '/Layout',
         name: 'Layout',
         meta: { title: 'Layout'},
-        component: Layout,
+        component: () => import('../Layout'),
         children: [
             {
                 path: '/',

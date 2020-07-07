@@ -7,6 +7,7 @@
 <script>
 import MButton from 'components/content/MButton'
 export default {
+    name: 'Layout',
     data() {
         return {
 

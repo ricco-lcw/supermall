@@ -32,7 +32,7 @@ import MButton from 'components/common/MButton'
 export default {
     data() {
         return {
-            MButton
+
         }
     },
     components:{

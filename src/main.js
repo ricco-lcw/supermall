@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './utils/mixins.scss'
+// import './components/common'
 // import './styles/index.scss'
 
 Vue.config.productionTip = false
