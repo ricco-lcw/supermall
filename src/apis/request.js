@@ -1,35 +1,23 @@
 import axios from 'axios'
+import baseURL from '@/baseURL'
 
-export function request(config) {
-  const intance = axios.create({
-    baseURL: 'http://123.207.32.32:8000',
+const service = axios.create({
+    baseURL,
     timeout: 5000
-  })
+})
 
-  // 请求拦截器
-  intance.interceptors.request.use( request => {
-
-    console.log('请求成功---',request)
+// 拦截器请求
+service.interceptors.request.use( request => {
     return request
-    },error => {
+},err => {
+    console.log(err)
+})
 
-      console.log('请求失败---',error)
+// 拦截器响应
+service.interceptors.response.use( response =>{
+    return response.data
+},err =>{
+    console.log(err)
+})
 
-    }
-  )
-
-  // 响应拦截器
-  intance.interceptors.response.use(response => {
-
-      console.log('响应成功---',response)
-
-      return response.data
-    },error => {
-
-      console.log('响应失败---',error)
-
-    }
-  )
-
-  return intance(config)
-}
+export default service

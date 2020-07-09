@@ -1,3 +1,4 @@
-import request from '../request'
+import  request  from '../request'
 
-// export const createData = data =>request.post('')
+// get接口
+export const createData = () => request.get('/home/multidata')

@@ -20,7 +20,7 @@ const CommonMap = [
                 path: '/homePage',
                 name: 'homePage',
                 meta: { title:'homePage' },
-                component: () => import('views/homePage')
+                component: () => import('views/homePage/index')
             },{
                 path: '/category',
                 name: 'category',

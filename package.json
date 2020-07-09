@@ -19,6 +19,5 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
-
   }
 }
