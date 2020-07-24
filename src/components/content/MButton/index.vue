@@ -30,6 +30,7 @@
 <script>
 import MButton from 'components/common/MButton'
 export default {
+    name: 'tabbar',
     data() {
         return {
 

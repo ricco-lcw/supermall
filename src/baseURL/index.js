@@ -1,3 +1,3 @@
-const BaseURL = process.env.NODE_ENV === 'production' ? '' : 'http://123.207.32.32:8000'
+const BaseURL = process.env.NODE_ENV === 'production' ? '' : 'http://152.136.185.210:8000/api/n3'
 
 export default BaseURL
