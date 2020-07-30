@@ -52,7 +52,6 @@ export default {
     font-weight: bold;
     height: 40px;
     line-height: 40px;
-    z-index: 999;
     background-color: #fff;
 
     &_item {

@@ -1,15 +1,15 @@
 <template>
     <section>
-        <!-- <div class="goods">
+        <div class="goods">
             <goods-item  class="items" v-for="item in goods" :key="item.key" :goodItem="item"></goods-item>
-        </div> -->
-        <div class="content">
+        </div>
+        <!-- <div class="content">
             <ul v-for="item in 100" :key="item">
                 <li>
                     {{`列表${item}`}}
                 </li>
             </ul>
-        </div>
+        </div> -->
     </section>
 </template>
 <script>
@@ -75,19 +75,19 @@ export default {
     overflow: hidden;
     overflow-y: scroll;
 }
-// .goods {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-around;
-//     padding: 2px;
-//     // height: 500px;
-//     // background: indianred;
+.goods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2px;
+    // height: 500px;
+    // background: indianred;
 
-//     // overflow: hidden;
-//     // overflow-y: scroll;
+    // overflow: hidden;
+    // overflow-y: scroll;
 
-//     .items {
-//         width: 48%;
-//     }
-// }
+    .items {
+        width: 48%;
+    }
+}
 </style>
