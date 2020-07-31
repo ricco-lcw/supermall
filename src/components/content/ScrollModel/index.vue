@@ -13,6 +13,12 @@ import BScroll from 'better-scroll'
 
 export default {
     name: 'Scroll',
+    props: {
+        probeType: {
+            type: Number,
+            default: 0
+        }
+    },
     data() {
         return {
 
@@ -28,16 +34,18 @@ export default {
         createScroll() {
             const scroll = new BScroll( this.$refs.wrapper, {
                 useTransition: true,
-                probeType: 3,
+                click: true,
+                probeType: this.probeType,
                 pullUpLoad: true,
                 pullDownRefresh: true
             })
 
             scroll.on('scroll', (position) => {
+                this.$emit('scroll',position)
             })
 
             scroll.on('pullingUp',() => {
-                console.log('上拉刷新')
+                // console.log('上拉刷新')
 
                 setTimeout( () => {
                     scroll.finishPullUp()
@@ -45,16 +53,15 @@ export default {
             })
 
             scroll.on('pullingDown',() => {
-                console.log('下拉刷新')
+                // console.log('下拉刷新')
 
                 setTimeout( () => {
                     scroll.finishPullDown()
                 },2000)
             })
 
-            // scroll.scrollTo(x,y)
+            // scroll.scrollTo(0, 0)
         }
-
     }
 }
 </script>

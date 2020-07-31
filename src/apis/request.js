@@ -2,8 +2,8 @@ import axios from 'axios'
 import baseURL from '@/baseURL'
 
 const service = axios.create({
-    baseURL,
-    timeout: 5000
+    baseURL
+    // timeout: 5000
 })
 
 // 拦截器请求

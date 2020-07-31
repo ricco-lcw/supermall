@@ -1,11 +1,13 @@
 <template>
     <section>
         <router-view></router-view>
-        <m-button></m-button>
+        <!-- <top-button></top-button> -->
+        <m-button ></m-button>
     </section>
 </template>
 <script>
 import MButton from 'components/content/MButton'
+// import TopButton from 'components/content/TopButton'
 export default {
     name: 'Layout',
     data() {
@@ -13,23 +15,16 @@ export default {
 
         }
     },
+    methods: {
+        // backClick(){
+        // }
+    },
     components: {
         MButton
+        // TopButton
     }
 }
 </script>
 <style lang="scss" sopced>
 
-// $background-color: #e6e6e6;
-
-// $link-color: blue;
-
-// .content {
-//     display: fixed;
-//     width: 20vw;
-//     height: 30vh;
-//     background-color: $background-color;
-//     color: $link_color;
-//     color:cadetblue;
-// }
 </style>

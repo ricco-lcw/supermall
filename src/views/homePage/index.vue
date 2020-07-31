@@ -4,22 +4,22 @@
             <nav-bar class="top">
                 <template #center>首页</template>
             </nav-bar>
-            <children-model />
-            <top-button />
+            <children-model  @scrollButton="handle"/>
+            <top-button v-if="displacement < -600" @click="backClick" ></top-button>
         </div>
     </section>
 </template>
 <script>
 import NavBar from 'components/common/NavBar' // 引入顶部组件
 import ChildrenModel from './childPage/modules' // 引入子组件
-import TopButton from 'components/content/TopButton' // 引入返回顶部组件
+import TopButton from 'components/content/TopButton' //引入返回顶部按钮
 
 export default {
 
     name: 'homePage',
     data() {
         return {
-
+            displacement: 0
         }
     },
     created() {
@@ -32,7 +32,12 @@ export default {
 
     },
     methods: {
+        backClick() {},
 
+        handle(position) {
+            this.displacement = position.y
+            console.log('....',this.displacement)
+        },
     },
     // 注册组件
     components:{

@@ -1,6 +1,6 @@
 <template>
     <section>
-        <scroll-model class="content">
+        <scroll-model class="content" :probeType="3" @scroll="handle">
             <home-detail :banners="banners"></home-detail>
             <home-recommend :recommends="recommends"></home-recommend>
             <feature></feature>
@@ -35,10 +35,12 @@ export default {
     },
 
     created() {
+
         this.getData()
         this.getPage('pop')
         this.getPage('new')
         this.getPage('sell')
+
     },
     methods:{
         async getData() {
@@ -46,7 +48,6 @@ export default {
             if(! res ) return
             this. banners = res.data.banner.list
             this.recommends = res.data.recommend.list
-
         },
 
         // 获取列表数据
@@ -56,7 +57,11 @@ export default {
             if(!res) return
             this.goods[type].list.push( ...res.data.list )
             this.goods[type].page + 1
-            // console.log('this.res',res)
+        },
+
+        // 向父组件传递子组件事件
+        handle(position) {
+            this.$emit('scrollButton',position)
         },
 
         // 响应请求

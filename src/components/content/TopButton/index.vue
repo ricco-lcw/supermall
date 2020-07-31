@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         backClick() {
-            this.$emit('backClick')
+            console.log('组件原生事件----')
         }
     }
 }
