@@ -4,8 +4,8 @@
             <nav-bar class="top">
                 <template #center>首页</template>
             </nav-bar>
-            <children-model  @scrollButton="handle"/>
-            <top-button v-if="displacement < -600" @click="backClick" ></top-button>
+            <children-model ref="scroll" @scrollButton="handle"/>
+            <top-button @click.native="backClick" v-if="displacement"></top-button>
         </div>
     </section>
 </template>
@@ -32,11 +32,16 @@ export default {
 
     },
     methods: {
-        backClick() {},
 
+        // 点击返回顶部
+        backClick() {
+
+            this.$refs.scroll.scrollTo(0,0)
+        },
+
+        // 获取坐标
         handle(position) {
-            this.displacement = position.y
-            console.log('....',this.displacement)
+            this.displacement = position.y < -1000
         },
     },
     // 注册组件

@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-
+            scroll: null
         }
     },
     created() {
@@ -32,7 +32,7 @@ export default {
     },
     methods:{
         createScroll() {
-            const scroll = new BScroll( this.$refs.wrapper, {
+            this.scroll = new BScroll( this.$refs.wrapper, {
                 useTransition: true,
                 click: true,
                 probeType: this.probeType,
@@ -40,28 +40,33 @@ export default {
                 pullDownRefresh: true
             })
 
-            scroll.on('scroll', (position) => {
+            this.scroll.on('scroll', (position) => {
                 this.$emit('scroll',position)
             })
 
-            scroll.on('pullingUp',() => {
-                // console.log('上拉刷新')
+            this.scroll.on('pullingUp',() => {
+                console.log('上拉刷新')
 
                 setTimeout( () => {
-                    scroll.finishPullUp()
+                    this.scroll.finishPullUp()
                 },2000)
             })
 
-            scroll.on('pullingDown',() => {
-                // console.log('下拉刷新')
+            this.scroll.on('pullingDown',() => {
+                console.log('下拉刷新')
 
                 setTimeout( () => {
-                    scroll.finishPullDown()
+                    this.scroll.finishPullDown()
                 },2000)
             })
 
-            // scroll.scrollTo(0, 0)
+            // this.scroll.scrollTo(0, 0)
+        },
+
+        scrollTo(x,y,time=300) {
+            this.scroll.scrollTo(x,y,time)
         }
+
     }
 }
 </script>

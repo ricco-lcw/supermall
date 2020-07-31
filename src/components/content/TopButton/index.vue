@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="icon-top" @click="backClick">
+        <div class="icon-top">
             <img src="~assets/common/top.png" alt="">
         </div>
     </section>
@@ -15,9 +15,6 @@ export default {
         }
     },
     methods: {
-        backClick() {
-            console.log('组件原生事件----')
-        }
     }
 }
 </script>

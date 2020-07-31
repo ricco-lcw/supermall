@@ -1,11 +1,11 @@
 <template>
     <section>
-        <scroll-model class="content" :probeType="3" @scroll="handle">
+        <scroll-model class="content" ref="scroll" :probeType="3" @scroll="handle">
             <home-detail :banners="banners"></home-detail>
             <home-recommend :recommends="recommends"></home-recommend>
             <feature></feature>
-            <tab-control  :titleList="titleList" @tabClick="tabClick"></tab-control>
-            <goods-item  :goods="showGoods"></goods-item>
+            <tab-control :titleList="titleList" @tabClick="tabClick"></tab-control>
+            <goods-item :goods="showGoods"></goods-item>
         </scroll-model>
     </section>
 </template>
@@ -63,7 +63,9 @@ export default {
         handle(position) {
             this.$emit('scrollButton',position)
         },
-
+        scrollTo(x,y) {
+            this.$refs.scroll.scrollTo(x,y)
+        },
         // 响应请求
         tabClick(index){
             switch(index) {
