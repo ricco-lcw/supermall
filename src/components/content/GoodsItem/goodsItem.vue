@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="goods-item">
-            <img :src="goodItem.show.img" alt="">
+            <img :src="goodItem.show.img" alt="" @load="imgLoad">
             <div class="goods-info">
                 <p>{{goodItem.title}}</p>
                 <span class="price">￥{{goodItem.price}}</span>
@@ -24,6 +24,12 @@ export default {
     data() {
         return {
 
+        }
+    },
+    methods: {
+        // 创建事件总线
+        imgLoad() {
+            this.bus.$emit('scrollRefresh')
         }
     }
 }

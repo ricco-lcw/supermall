@@ -17,6 +17,14 @@ export default {
         probeType: {
             type: Number,
             default: 0
+        },
+        pullUpLoad: {
+            type: Boolean,
+            default: false
+        },
+        pullDownRefresh: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -32,40 +40,57 @@ export default {
     },
     methods:{
         createScroll() {
+
             this.scroll = new BScroll( this.$refs.wrapper, {
                 useTransition: true,
                 click: true,
                 probeType: this.probeType,
-                pullUpLoad: true,
-                pullDownRefresh: true
+                pullUpLoad: this.pullUpLoad,
+                pullDownRefresh: this.pullDownRefresh
             })
 
-            this.scroll.on('scroll', (position) => {
-                this.$emit('scroll',position)
-            })
+            if(this.probeType === 2 || this.probeType === 3){
+                this.scroll.on('scroll', (position) => {
+                    this.$emit('scroll',position)
+                })
+            }
 
-            this.scroll.on('pullingUp',() => {
-                console.log('上拉刷新')
-
-                setTimeout( () => {
-                    this.scroll.finishPullUp()
-                },2000)
-            })
-
-            this.scroll.on('pullingDown',() => {
-                console.log('下拉刷新')
-
-                setTimeout( () => {
-                    this.scroll.finishPullDown()
-                },2000)
-            })
-
-            // this.scroll.scrollTo(0, 0)
+            if(this.pullUpLoad === true) {
+                this.scroll.on('pullingUp',() => {
+                    this.$emit('pullingUp')
+                    // setTimeout( () => {
+                    //     this.scroll.finishPullUp()
+                    // },2000)
+                })
+            }
+            if(this.pullDownRefresh === true) {
+                this.scroll.on('pullingDown',() => {
+                    this.$emit('pullingDown')
+                    setTimeout( () => {
+                        this.scroll.finishPullDown()
+                    },2000)
+                })
+            }
         },
 
+        // 坐标返回到指定位置
         scrollTo(x,y,time=300) {
-            this.scroll.scrollTo(x,y,time)
-        }
+            this.scroll && this.scroll.scrollTo(x,y,time)
+        },
+
+        // 上拉加载
+        finishPullUp() {
+            this.scroll && this.scroll.finishPullUp()
+        },
+
+        // 下拉刷新
+        finishPullDown() {
+            this.scroll && this.scroll.finishPullDown()
+        },
+        // 实时刷新
+        refresh() {
+            this.scroll && this.scroll.refresh()
+        },
 
     }
 }

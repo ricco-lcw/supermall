@@ -3,10 +3,11 @@
         <div>
             {{items}}
         </div>
+        <button @click="handle('111111111')">hhhhhh</button>
     </section>
 </template>
 <script>
-
+import { Debounce } from 'utils/index'
 export default {
 
     name: 'category',
@@ -23,7 +24,9 @@ export default {
 
     },
     methods: {
-
+        handle: Debounce( val => {
+            console.log(val)
+        })
     },
     components: {
     }

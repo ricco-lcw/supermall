@@ -3,19 +3,13 @@
         <div class="goods">
             <goods-item  class="items" v-for="item in goods" :key="item.key" :goodItem="item"></goods-item>
         </div>
-        <!-- <div class="content">
-            <ul v-for="item in 100" :key="item">
-                <li>
-                    {{`列表${item}`}}
-                </li>
-            </ul>
-        </div> -->
+
     </section>
 </template>
 <script>
+
 import GoodsItem from './goodsItem'
-// import BScroll from 'utils/bscroll'
-// import BScroll from 'better-scroll'
+
 export default {
     name:'goods',
     props:{
@@ -36,7 +30,6 @@ export default {
     },
 
     mounted() {
-        // this.createScroll()
 
     },
 
@@ -45,25 +38,7 @@ export default {
     },
 
     methods: {
-        createScroll(){
-            this.scroll = new BScroll( document.querySelector('.content'),{
-                // click: true,
-                // probeType: 3,
-                // pullUpload: true
-            })
-            // console.log( this.scroll)
 
-            // this.scroll.on('scroll',(position) => {
-            //     console.log(position)
-            // })
-
-            // this.scroll.on('pullingUp', () => {
-            //     console.log('________')
-            //     setTimeout( () => {
-            //         scroll.finishPullUp()
-            //     },2000)
-            // })
-        }
     }
 }
 </script>

@@ -33,8 +33,8 @@ module.exports = {
         hotOnly: false,
         proxy: setProxy(
             new Map([
-                ['/testOne', 'http://152.136.185.210:8000/api/n3'], //test
-                ['/testTwo', 'http://152.136.185.210:8000/api/z8'], //test
+                ['/testOne', 'http://152.136.185.210:8000/api/n3'], //testOne
+                ['/testTwo', 'http://152.136.185.210:8000/api/z8'], //testTwo
             ])
         )
     }
