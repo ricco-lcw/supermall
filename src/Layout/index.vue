@@ -1,13 +1,13 @@
 <template>
     <section>
-        <router-view></router-view>
-        <!-- <top-button></top-button> -->
+        <keep-alive exclude="detail">
+            <router-view></router-view>
+        </keep-alive>
         <m-button ></m-button>
     </section>
 </template>
 <script>
 import MButton from 'components/content/MButton'
-// import TopButton from 'components/content/TopButton'
 export default {
     name: 'Layout',
     data() {
@@ -16,12 +16,10 @@ export default {
         }
     },
     methods: {
-        // backClick(){
-        // }
+
     },
     components: {
         MButton
-        // TopButton
     }
 }
 </script>

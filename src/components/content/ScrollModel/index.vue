@@ -72,7 +72,6 @@ export default {
                 })
             }
         },
-
         // 坐标返回到指定位置
         scrollTo(x,y,time=300) {
             this.scroll && this.scroll.scrollTo(x,y,time)
@@ -91,7 +90,10 @@ export default {
         refresh() {
             this.scroll && this.scroll.refresh()
         },
-
+        // 获取Y坐标
+        getScrollY() {
+            return this.scroll? this.scroll.y: 0
+        }
     }
 }
 </script>

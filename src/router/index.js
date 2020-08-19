@@ -11,7 +11,7 @@ const CommonMap = [
         path: '/Layout',
         name: 'Layout',
         meta: { title: 'Layout'},
-        component: () => import('../Layout'),
+        component: () => import('@/Layout'),
         children: [
             {
                 path: '/',
@@ -36,6 +36,11 @@ const CommonMap = [
                 name: 'profile',
                 meta: { title:'profile' },
                 component: () => import('views/profile')
+            },{
+                path: '/detail/:id',
+                name: 'detail',
+                meta: { title:'detail' },
+                component: () => import('views/detail')
             }
         ]
     }

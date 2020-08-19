@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="tabbar" >
-            <m-button :path="'homePage'" :activeColor="'red'">
+            <m-button :path="'homePage'">
                 <template #itemIcon > <img  src="~assets/tabbar/home.png" alt=""> </template>
                 <template #itemIconActive > <img  src="~assets/tabbar/home_active.png" alt=""> </template>
                 <template #itemName ><br>首页</template>

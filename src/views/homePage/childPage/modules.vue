@@ -1,5 +1,7 @@
 <template>
     <section>
+        <tab-control :titleList="titleList" @tabClick="tabClick" ref="tabControl1" class="tab-control" v-show="isTabFixed"></tab-control>
+
         <scroll-model
             class="content"
             ref="scroll"
@@ -13,9 +15,11 @@
             <home-detail :banners="banners" @swipperImgLoad="swipperImgLoad"></home-detail>
             <home-recommend :recommends="recommends"></home-recommend>
             <feature></feature>
-            <tab-control :titleList="titleList" @tabClick="tabClick" ref="tabControl"></tab-control>
+            <tab-control :titleList="titleList" @tabClick="tabClick" ref="tabControl2"></tab-control>
             <goods-item :goods="showGoods"></goods-item>
         </scroll-model>
+
+        <top-button @click.native="backClick" v-if="displacement"></top-button>
     </section>
 </template>
 <script>
@@ -26,11 +30,15 @@ import homeRecommend from './homeRecommend' // 引入标签组件
 import Feature from './feature' // 引入img组件
 import TabControl from 'components/content/TabControl' // 引入tabs组件
 import GoodsItem from 'components/content/GoodsItem/index' // 引入tabs-children组件
+import TopButton from 'components/content/TopButton' //引入返回顶部按钮
+
 import { Debounce } from 'utils/index' // 引入防抖函数
 
 export default {
+    name: 'childPage',
     data() {
         return {
+
             banners: [],
             recommends: [],
             titleList: [ '流行', '新款', '精选' ],
@@ -40,42 +48,48 @@ export default {
                 'new': { page: 0, list: [] },
                 'sell': { page: 0, list: [] },
             },
-            tabOffsetTop:0
+            displacement: 0,
+            tabOffsetTop: 0,
+            isTabFixed: false,
+            saveY: 0
         }
     },
-
+    activated() {
+        this.$refs.scroll.scrollTo(0,this.saveY,0)
+        this.$refs.scroll.refresh()
+    },
+    deactivated() {
+        this.saveY = this.$refs.scroll.getScrollY()
+    },
     created() {
         this.getData()
 
         this.getPage('pop')
         this.getPage('new')
         this.getPage('sell')
-
     },
     mounted() {
-
         // 防抖加载
         this.bus.$on('scrollRefresh', () => {
             Debounce(this.$refs.scroll.refresh(),500)
         })
-
-
-
-        console.log('-------',this.$refs.tabControl.$el.offsetTop)
-
-
     },
     methods:{
+
+        // 获取吸顶坐标
         swipperImgLoad() {
-
-            this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
-            console.log(this.tabOffsetTop)
-
+            this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
         },
 
-        // 向父组件传递子组件事件
+        // 点击返回顶部
+        backClick() {
+            this.$refs.scroll.scrollTo(0,0)
+        },
+
+        // 获取坐标
         scrollHandle(position) {
-            this.$emit('scrollButton',position)
+            this.displacement = (-position.y) > 1000
+            this.isTabFixed = (-position.y) > this.tabOffsetTop
         },
 
         // 上拉加载
@@ -87,11 +101,6 @@ export default {
         // 下拉刷新
         pullingDownHandle(){
             console.log('下拉刷新')
-        },
-
-        // 返回顶部
-        scrollTo(x,y){
-            this.$refs.scroll.scrollTo(x,y)
         },
 
         // 获取多个数据
@@ -115,6 +124,9 @@ export default {
 
         // 响应请求
         tabClick(index){
+            this.$refs.tabControl1.currentIndex = index
+            this.$refs.tabControl2.currentIndex = index
+
             switch(index) {
                 case 0:
                     this.touchType = 'pop'
@@ -146,11 +158,16 @@ export default {
         homeRecommend,
         Feature,
         TabControl,
-        GoodsItem
+        GoodsItem,
+        TopButton
     }
 }
 </script>
 <style lang="scss" scoped>
+.tab-control {
+    position: relative;
+    z-index: 9;
+}
 .content {
     overflow: hidden;
     position: absolute;

@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="goods-item">
+        <div class="goods-item" @click="imgClick">
             <img :src="goodItem.show.img" alt="" @load="imgLoad">
             <div class="goods-info">
                 <p>{{goodItem.title}}</p>
@@ -23,13 +23,21 @@ export default {
     },
     data() {
         return {
-
         }
     },
     methods: {
         // 创建事件总线
         imgLoad() {
+
             this.bus.$emit('scrollRefresh')
+
+        },
+
+        // 点击图片根据图片ID跳转到相关页面
+        imgClick() {
+
+            this.$router.push( `detail/${this.goodItem.iid}` )
+
         }
     }
 }

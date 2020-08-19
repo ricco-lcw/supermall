@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         handle() {
-            this.$router.replace(this.path)
+            this.$router.push({name:this.path})
         }
     }
 }
