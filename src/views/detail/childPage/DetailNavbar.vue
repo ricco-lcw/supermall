@@ -15,7 +15,7 @@
 import NavBar from 'components/common/NavBar' // 引入组件
 
 export default {
-    name: 'DetailNavbar',
+    name: 'detailNavbar',
     data() {
         return {
             titleList: ['商品', '参数', '评论', '推荐'],

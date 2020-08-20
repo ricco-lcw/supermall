@@ -1,30 +1,37 @@
 <template>
     <section>
-        <div calss="detail">
-             <detail-navbar/>
+        <detail-navbar/>
+        <scroll-model class="content">
+            <!-- 头部轮播图 -->
             <detail-swiper :dateList="dateList"/>
-            <detail-base-info :items="baseItems"></detail-base-info>
-            <div >
-                <p v-for="item in 100" :key="item">{{item}}</p>
-            </div>
-        </div>
+            <!-- 商品价格信息 -->
+            <detail-base-info :baseItems="baseItems"></detail-base-info>
+            <!-- 店铺评价信息 -->
+            <detail-store-info :storeItems="storeItems"></detail-store-info>
+            <!-- 图片列表 -->
+            <detail-img-list :imgItems="imgItems"></detail-img-list>
+        </scroll-model>
     </section>
 </template>
 
 <script>
 import { getDetailInfo, Goods } from 'apis' // 引入接口
-import DetailNavbar from './childPage/DetailNavbar' // 引入组件
-import DetailSwiper from './childPage/DetailSwiper' // 引入组件
-import DetailBaseInfo from './childPage/DetailBaseInfo' // 引入组件
+import ScrollModel from 'components/content/ScrollModel' // scroll引入组件
+import DetailNavbar from './childPage/detailNavbar' // 引入组件
+import DetailSwiper from './childPage/detailSwiper' // 引入组件
+import DetailBaseInfo from './childPage/detailBaseInfo' // 引入组件
+import DetailStoreInfo from './childPage/detailStoreInfo' // 引入组件
+import DetailImgList from './childPage/detailImgList' // 引入组件
 
 export default {
     name: 'detail',
     data() {
         return {
             id: this.$route.params.id, // 监听主页ID
-            dateList: [],
-            baseItems: {},
-
+            dateList: [], // 商品图片list
+            baseItems: {}, // 商品信息
+            storeItems: {}, // 店铺信息
+            imgItems: {} // 图片列表信息
         }
     },
     created() {
@@ -39,17 +46,27 @@ export default {
             const data = res.result
             this.dateList = res.result.itemInfo.topImages
             this.baseItems = new Goods(data.itemInfo, data.columns,data.shopInfo)
+            this.storeItems = data.shopInfo
+            this.imgItems = data.detailInfo
         }
     },
     components: {
         DetailNavbar,
+        ScrollModel,
         DetailSwiper,
-        DetailBaseInfo
+        DetailBaseInfo,
+        DetailStoreInfo,
+        DetailImgList
     }
 }
 </script>
 <style lang="scss" scoped>
-.detail {
-    background-color: #fff;
+.content {
+    overflow: hidden;
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
 }
 </style>

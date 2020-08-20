@@ -12,7 +12,7 @@
 import { Swiper, SwiperItem } from 'components/common/Swiper'
 
 export default {
-    name: 'DetailSwiper',
+    name: 'detailSwiper',
     props:{
         dateList:{
             type: Array,

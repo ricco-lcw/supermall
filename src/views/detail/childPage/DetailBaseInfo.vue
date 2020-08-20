@@ -1,27 +1,27 @@
 <template>
     <section>
-        <div class="base" v-if="Object.keys(items).length !== 0">
+        <div class="base" v-if="Object.keys(baseItems).length !== 0">
             <!-- 内容 -->
             <div class="base_top">
-                <span>{{items.title}}</span>
+                <span>{{baseItems.title}}</span>
             </div>
             <!-- 价格 -->
             <div class="base_content">
-                <p class="base_content_price">{{items.price}}</p>
-                <p class="base_content_oldPrice">{{items.oldPrice}}</p>
-                <p class="base_content_activity">{{items.discountDesc}}</p>
+                <p class="base_content_price">{{baseItems.price}}</p>
+                <p class="base_content_oldPrice">{{baseItems.oldPrice}}</p>
+                <p class="base_content_activity">{{baseItems.discountDesc}}</p>
             </div>
             <!-- 默认 -->
             <div class="base_footer">
-                <p>{{items.columns[0]}}</p>
-                <p>{{items.columns[1]}}</p>
-                <p>{{items.services[ items.services.length -1 ].name}}</p>
+                <p>{{baseItems.columns[0]}}</p>
+                <p>{{baseItems.columns[1]}}</p>
+                <p>{{baseItems.services[ baseItems.services.length -1 ].name}}</p>
             </div>
             <!-- 底部 -->
             <div class="base_bottom">
-                <p v-for="index of items.services.length -1" :key="index">
-                    <img :src="items.services[index-1].icon" alt="">
-                    {{items.services[index-1].name}}
+                <p v-for="index of baseItems.services.length -1" :key="index">
+                    <img :src="baseItems.services[index-1].icon" alt="">
+                    {{baseItems.services[index-1].name}}
                 </p>
             </div>
         </div>
@@ -29,9 +29,9 @@
 </template>
 <script>
 export default {
-    name: 'DetailBaseInfo',
+    name: 'detailBaseInfo',
     props: {
-        items:{
+        baseItems:{
             type: Object,
             default() {
                 return {}
