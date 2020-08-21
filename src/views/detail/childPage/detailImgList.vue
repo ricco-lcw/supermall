@@ -7,7 +7,7 @@
             <div class="items_imgs">
                 <div v-for="item in imgItems.detailImage" :key="item.key">
                     <p>{{item.key}}</p>
-                    <img v-for="items in item.list" :key="items.key" :src="items" alt="">
+                    <img v-for="items in item.list" :key="items.key" :src="items" alt="" @load="imgLoad">
                 </div>
             </div>
         </div>
@@ -20,7 +20,10 @@ export default {
         imgItems: {
             type: Object,
             default() {
-                return {}
+                return {
+                    counter: 0,
+                    imgsLength: 0
+                }
             }
         }
     },
@@ -28,6 +31,20 @@ export default {
         return {
 
         }
+    },
+    watch: {
+       imgItems() {
+        // 获取图片数量
+            this.imgsLength = this.imgItems.detailImage[0].list.length
+        }
+    },
+    methods: {
+        // 判断所有图片加载完，进行回调
+        imgLoad() {
+            if(++this.counter === this.imgsLength) {
+                this.$emit('scrollRefreshImg')
+            }
+        },
     }
 }
 </script>

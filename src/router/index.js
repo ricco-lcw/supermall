@@ -37,7 +37,7 @@ const CommonMap = [
                 meta: { title:'profile' },
                 component: () => import('views/profile')
             },{
-                path: '/detail/:id',
+                path: '/detail',
                 name: 'detail',
                 meta: { title:'detail' },
                 component: () => import('views/detail')

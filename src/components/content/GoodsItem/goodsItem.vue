@@ -28,16 +28,13 @@ export default {
     methods: {
         // 创建事件总线
         imgLoad() {
-
             this.bus.$emit('scrollRefresh')
-
         },
 
         // 点击图片根据图片ID跳转到相关页面
         imgClick() {
-
-            this.$router.push( `detail/${this.goodItem.iid}` )
-
+            // this.$router.push( `detail/${this.goodItem.iid}` )
+            this.$router.push({ path:'detail', query: { iid: this.goodItem.iid } })
         }
     }
 }

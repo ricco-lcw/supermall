@@ -4,7 +4,7 @@
             <div class="left" @click="goback()">
                 <img src="~assets/common/back-left.png" alt="">
             </div>
-            <div class="center" v-for="(item,index) in titleList" :key="item.key" :class="{ active: index === currentIndex}" @click="handle(index)">
+            <div class="center" v-for="(item,index) in titleList" :key="item.key" :class="{ active: index === currentIndex}" @click="clickHandle(index)">
                 {{item}}
             </div>
             <div class="right"></div>
@@ -16,8 +16,10 @@ import NavBar from 'components/common/NavBar' // 引入组件
 
 export default {
     name: 'detailNavbar',
+
     data() {
         return {
+            id: this.$route.params.id, // 监听主页ID
             titleList: ['商品', '参数', '评论', '推荐'],
             currentIndex: 0
         }
@@ -27,8 +29,14 @@ export default {
     },
     methods: {
         // 获取下标
-        handle(index){
+        clickHandle(index){
             this.currentIndex = index
+            switch(index) {
+                case 0:
+                    break
+            }
+            console.log('-----',this.currentIndex)
+            console.log('***',this.id)
         },
         // 返回主页面
         goback() {
